@@ -26,7 +26,7 @@ Login as a member (Authorisation)
     Path:               /members/authorisation
     Method:             POST
     RequestHeader:      content-type:application/json
-    RequestBody:        {"email":"$email","password":"$password"};
+    RequestBody:        {"email":"$email","password":"$password"}
     Response:           Status 200, if E-Mail and Password are correct; else Status 404?
     Implemented:        NO
     Details:            Login with E-Mail and Password.
