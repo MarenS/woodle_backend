@@ -52,15 +52,16 @@ Create a new appointment (invite someone to an appointment)
     Path:               /appointments
     Method:             PUT
     RequestHeader:      content-type:application/json
-    RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber}
+    RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber,"calendarUri":$calendarUri}
     Implemented:        partly, see AppointmentsRessource -> create()
-    Caution:            ID is the key, which consists of titledate, e.g. "id":"title-2012-21-03-16.20.00". Date: YYYY-DD-MM-HH-MinutesM-SecondsS
+    Caution:            ID is the key, which consists of title-startDate, e.g. "id":"title-2012-21-03-16.20.00". Date: YYYY-DD-MM-HH-MinutesM-SecondsS
     Details:            maxNumber: How many people are allowed to add this appointment?
                         user: E-Mail Adress of the user, who created this appointment
                         attendance: E-Mail Adresses of users, who wants to use this appointment
                         maybeAttendance: if maxNumber > size of attendance : the user will fill in maybeAttendance
+                        calendarUri: needed to update or delete an event in my google calendar
 
-Details: Appointment.java needs description, startDate (old start), endDate, attendance, maybeAttendance, user, maxNumber 
+Details: Appointment.java needs description, startDate (old start), endDate, attendance, maybeAttendance, user, maxNumber (int) 
 
     
 Show all appointments
