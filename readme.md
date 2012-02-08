@@ -15,9 +15,10 @@ Create a new member (Registration)
     RequestBody:        {"email":"$email","password":"$password","phonenumber":"$phonenumber"}
     Response:           Status 200, if User is created
     Implemented:        partly, see MemberResourceRESTService -> addMember()
-    Details:            Needs to be a PUT, because it creates a new ressource
+    Details:            Needs to be a PUT, because it creates a new resource
 
-Details: Member.java must contain: E-Mail (ok), Password (missing), PhoneNumber (ok). Delete ID and Username
+Details: Member.java must contain: E-Mail (ok), Password (missing), PhoneNumber (ok). Delete ID and Username.
+
 Caution E-Mail is the key!
 
 Login as a member (Authorisation)
@@ -27,7 +28,7 @@ Login as a member (Authorisation)
     Method:             POST
     RequestHeader:      content-type:application/json
     RequestBody:        {"email":"$email","password":"$password"}
-    Response:           Status 200, if E-Mail and Password are correct; else Status 404?
+    Response:           Status 200, if E-Mail and Password are correct
     Implemented:        NO
     Details:            Login with E-Mail and Password.
     
@@ -71,6 +72,7 @@ Show all appointments
     RequestHeader:      -
     RequestBody:        -
     Response:           {"appointments":[{appointment1},{appointment2}]}
+    Response Status:    200: OK
     Example Response:   {\"appointments\":[{\"id\":\"$id\",\"title\":\"Joggen am Mittag\",\"location\":\"location\",\"description\":\"$description\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate\",\"attendance\":\"$attendance1\",\"maybeAttendance\":\"$maybeAttendance1\",\"user\":\"$user\",\"maxNumber\":\"$maxNumber\"},{\"id\":\"$id2\",\"title\":\"Jobbörse\",\"location2\":\"location\",\"description\":\"$description2\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate2\",\"attendance\":\"$attendance4\",\"maybeAttendance\":\"$maybeAttendance3\",\"user\":\"$user1\",\"maxNumber\":\"$maxNumber1\"}]}
     Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
     
