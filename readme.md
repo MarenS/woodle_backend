@@ -52,7 +52,7 @@ Create a new appointment (invite someone to an appointment)
     Method:             PUT
     RequestHeader:      content-type:application/json
     RequestBody:        {"id": $id","title": "title", "location": "location", "description": "$description", "startDate": "$startDate", "endDate": "$endDate, "attendance": ["$attendance1","$attendance2"], "maybeAttendance": ["$maybeAttendance1","$maybeAttendance2"],"user": $user, "maxNumber": $maxNumber}
-    Implemented:        party, see AppointmentsRessource -> create()
+    Implemented:        partly, see AppointmentsRessource -> create()
     Caution:            ID is the key, which consists of titledate, e.g. "id":"title-2012-03-21-16.20.00". Date: YYYY-MM-DD-HH-MinutesM-SecondsS
     Details:            maxNumber: How many people are allowed to add this appointment?
                         user: E-Mail Adress of the user, who created this appointment
@@ -84,7 +84,12 @@ Show a specific appointment
 Show all appointments, which I have created
 -----------
 
-    see Show all appointments (Android Client will filter the results; nothing to do!)
+    Path:               /appointments/$email
+    Method:             GET
+    RequestHeader:      -
+    RequestBody:        -
+    Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
+    Details:            $email is the E-Mail Adress of $user in all appointments
  
 Show a specific appointment, which I have created
 -----------
