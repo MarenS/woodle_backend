@@ -12,12 +12,12 @@ Create a new member (Registration)
     Path:               /members
     Method:             PUT (old POST)
     RequestHeader:      content-type:application/json
-    RequestBody:        {"username":"$username","password":"$password","email":"$email","phonenumber":"$phonenumber"}
+    RequestBody:        {"email":"$email","password":"$password","phonenumber":"$phonenumber"}
     Response:           Status 200, if User is created
     Implemented:        partly, see MemberResourceRESTService -> addMember()
     Details:            Needs to be a PUT, because it creates a new ressource
 
-Details: Member.java must contain: ID (not required), E-Mail (ok), Name (actually not required), Password (missing), PhoneNumber (ok).
+Details: Member.java must contain: E-Mail (ok), Password (missing), PhoneNumber (ok). Delete ID and Username
 Caution E-Mail is the key!
 
 Login as a member (Authorisation)
