@@ -52,9 +52,11 @@ Create a new appointment (invite someone to an appointment)
     Path:               /appointments
     Method:             PUT
     RequestHeader:      content-type:application/json
-    RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber,"calendarUri":"$calendarUri"}
+    RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$useremail-eventId","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber}
     Implemented:        partly, see AppointmentsRessource -> create()
     Caution:            ID is the key, which consists of title-startDate, e.g. "id":"title-2012-21-03-16.20.00". Date: YYYY-DD-MM-HH-MinutesM-SecondsS
+    Caution2:           for "attendance":["$useremail-eventId","$attendance2"]: useremail-eventId can be "info@info.com-343a4h4". Need E-Mail and EventID together, so that the Client knows in which calender delete which event
+    Caution3:           for maybeAttendance: consists of useremail.eventId (same as attendance), e.g. "info@info.com-343a4h4"
     Details:            maxNumber: How many people are allowed to add this appointment?
                         user: E-Mail Adress of the user, who created this appointment
                         attendance: E-Mail Adresses of users, who wants to use this appointment
@@ -74,7 +76,8 @@ Show all appointments
     RequestBody:        -
     Response:           {"appointments":[{appointment1},{appointment2}]}
     Response Status:    200: OK
-    Example Response:   {\"appointments\":[{\"id\":\"$id\",\"title\":\"Joggen am Mittag\",\"location\":\"location\",\"description\":\"$description\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate\",\"attendance\":\"$attendance1\",\"maybeAttendance\":\"$maybeAttendance1\",\"user\":\"$user\",\"maxNumber\":\"$maxNumber\","calendarUri":"$calendarUri"},{\"id\":\"$id2\",\"title\":\"Jobbörse\",\"location2\":\"location\",\"description\":\"$description2\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate2\",\"attendance\":\"$attendance4\",\"maybeAttendance\":\"$maybeAttendance3\",\"user\":\"$user1\",\"maxNumber\":\"$maxNumber1\","calendarUri":"$calendarUri"}]}
+    Example Response:   {\"appointments\":[{\"id\":\"$id\",\"title\":\"Joggen am Mittag\",\"location\":\"location\",\"description\":\"$description\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate\",\"attendance\":\"$useremail-eventId"\",\"maybeAttendance\":\"$maybeAttendance1\",\"user\":\"$user\",\"maxNumber\":\"$maxNumber\"},{\"id\":\"$id2\",\"title\":\"Jobbörse\",\"location2\":\"location\",\"description\":\"$description2\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate2\",\"attendance\":\""$useremail-eventId"\",\"maybeAttendance\":\"$maybeAttendance3\",\"user\":\"$user1\",\"maxNumber\":\"$maxNumber1\"}]}
+    Caution:            for info with attendance and maybeAttendance, see Create a new appointment! (Caution2&3)
     Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
     
 Show a specific appointment
@@ -107,7 +110,7 @@ Add me to an appointment (attendance)
     Path:               /appointments/$id
     Method:             POST
     RequestHeader:      content-type:application/json
-    RequestBody:        {"id":$id","title":"title","location":"location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":"$maxNumber","calendarUri":"$calendarUri"}
+    RequestBody:        {"id":$id","title":"title","location":"location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":"$maxNumber"}
     Implemented:        NO
     Details:            see Create a new appointment
     
