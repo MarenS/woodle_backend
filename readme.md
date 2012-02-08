@@ -12,7 +12,7 @@ Create a new member (Registration)
     Path:               /members
     Method:             PUT (old POST)
     RequestHeader:      content-type:application/json
-    RequestBody:        {"username": "$username", "password": "$password", "email": "$email", "phonenumber": "$phonenumber"}
+    RequestBody:        {"username":"$username","password":"$password","email":"$email","phonenumber":"$phonenumber"}
     Response:           Status 200, if User is created
     Implemented:        partly, see MemberResourceRESTService -> addMember()
     Details:            Needs to be a PUT, because it creates a new ressource
@@ -26,7 +26,7 @@ Login as a member (Authorisation)
     Path:               /members/authorisation
     Method:             POST
     RequestHeader:      content-type:application/json
-    RequestBody:        {"email": "$email", "password": "$password"};
+    RequestBody:        {"email":"$email","password":"$password"};
     Response:           Status 200, if E-Mail and Password are correct; else Status 404?
     Implemented:        NO
     Details:            Login with E-Mail and Password.
@@ -38,7 +38,7 @@ Modify a member (myself)
     Path:               /members/$email
     Method:             POST, (old PUT)
     RequestHeader:      content-type:application/json
-    RequestBody:        {"username": "$username", "password": "$password", "email": "$email", "phonenumber": "$phonenumber"}
+    RequestBody:        {"username":"$username","password":"$password","email":"$email","phonenumber":"$phonenumber"}
     Response:           Status 200: OK
     Implemented:        partly, see MemberResourceRESTService -> modifyMember()
     Details:            Login with E-Mail and Password
@@ -51,7 +51,7 @@ Create a new appointment (invite someone to an appointment)
     Path:               /appointments
     Method:             PUT
     RequestHeader:      content-type:application/json
-    RequestBody:        {"id": $id","title": "title", "location": "location", "description": "$description", "startDate": "$startDate", "endDate": "$endDate, "attendance": ["$attendance1","$attendance2"], "maybeAttendance": ["$maybeAttendance1","$maybeAttendance2"],"user": $user, "maxNumber": $maxNumber}
+    RequestBody:        {"id":$id","title":"title","location":"location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber}
     Implemented:        partly, see AppointmentsRessource -> create()
     Caution:            ID is the key, which consists of titledate, e.g. "id":"title-2012-03-21-16.20.00". Date: YYYY-MM-DD-HH-MinutesM-SecondsS
     Details:            maxNumber: How many people are allowed to add this appointment?
@@ -102,7 +102,7 @@ Add me to an appointment (attendance)
     Path:               /appointments/$id
     Method:             POST
     RequestHeader:      content-type:application/json
-    RequestBody:        {"id": $id","title": "title", "location": "location", "description": "$description", "startDate": "$startDate", "endDate": "$endDate, "attendance": ["$attendance1","$attendance2"], "maybeAttendance": ["$maybeAttendance1","$maybeAttendance2"],"user": $user, "maxNumber": $maxNumber}
+    RequestBody:        {"id":$id","title":"title","location":"location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber}
     Implemented:        NO
     Details:            see Create a new appointment
     
