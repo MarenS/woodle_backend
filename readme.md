@@ -53,7 +53,7 @@ Create a new appointment (invite someone to an appointment)
     RequestHeader:      content-type:application/json
     RequestBody:        {"id": $id","title": "title", "location": "location", "description": "$description", "startDate": "$startDate", "endDate": "$endDate, "attendance": ["$attendance1","$attendance2"], "maybeAttendance": ["$maybeAttendance1","$maybeAttendance2"],"user": $user, "maxNumber": $maxNumber}
     Implemented:        party, see AppointmentsRessource -> create()
-    Caution:            ID is the key, which consists of titledate, e.g. "id":"title2012-03-21-16.20.00". Date: YYYY-MM-DD-HH-MinutesM-SecondsS
+    Caution:            ID is the key, which consists of titledate, e.g. "id":"title-2012-03-21-16.20.00". Date: YYYY-MM-DD-HH-MinutesM-SecondsS
     Details:            maxNumber: How many people are allowed to add this appointment?
                         user: E-Mail Adress of the user, who created this appointment
                         attendance: E-Mail Adresses of users, who wants to use this appointment
