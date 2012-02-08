@@ -61,7 +61,7 @@ Create a new appointment (invite someone to an appointment)
                         maybeAttendance: if maxNumber > size of attendance : the user will fill in maybeAttendance
                         calendarUri: needed to update or delete an event in my google calendar
 
-Details: Appointment.java needs description, startDate (old start), endDate, attendance, maybeAttendance, user, maxNumber (int) 
+Details: Appointment.java needs description, startDate (old start), endDate, attendance, maybeAttendance, user, maxNumber (int), calendarUri
 
     
 Show all appointments
