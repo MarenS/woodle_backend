@@ -62,7 +62,7 @@ Create a new appointment (invite someone to an appointment)
                         attendance: E-Mail Adresses of users, who wants to use this appointment
                         maybeAttendance: if maxNumber > size of attendance : the user will fill in maybeAttendance
 
-Details: Appointment.java needs description, startDate (old start), endDate, attendance, maybeAttendance, user, maxNumber (int), calendarUri
+Details: Appointment.java needs description (String), startDate (old start) (long), endDate (long), attendance (ArrayList<String>), maybeAttendance (ArrayList<String>), user (String), maxNumber (int)
 
     
 Show all appointments
@@ -109,7 +109,7 @@ Add me to an appointment (attendance)
     Path:               /appointments/$id
     Method:             POST
     RequestHeader:      content-type:application/json
-    RequestBody:        {"id":$id","title":"title","location":"location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":"$maxNumber"}
+    RequestBody:        {"id":$id","title":"title","location":"location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber}
     Implemented:        NO
     Details:            see Create a new appointment
     
