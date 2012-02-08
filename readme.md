@@ -70,7 +70,8 @@ Show all appointments
     Method:             GET
     RequestHeader:      -
     RequestBody:        -
-    Response:           [{appointment1},{appointment2}]
+    Response:           {"appointments":[{appointment1},{appointment2}]}
+    Example Response:   {\"appointments\":[{\"id\":\"$id\",\"title\":\"Joggen am Mittag\",\"location\":\"location\",\"description\":\"$description\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate\",\"attendance\":\"$attendance1\",\"maybeAttendance\":\"$maybeAttendance1\",\"user\":\"$user\",\"maxNumber\":\"$maxNumber\"},{\"id\":\"$id2\",\"title\":\"Jobbörse\",\"location2\":\"location\",\"description\":\"$description2\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate2\",\"attendance\":\"$attendance4\",\"maybeAttendance\":\"$maybeAttendance3\",\"user\":\"$user1\",\"maxNumber\":\"$maxNumber1\"}]}
     Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
     
 Show a specific appointment
