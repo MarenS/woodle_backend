@@ -51,79 +51,69 @@ Create a new appointment (invite someone to an appointment)
     Path:               /appointments
     Method:             PUT
     RequestHeader:      content-type:application/json
-    RequestBody:        {"title": "title", "location": "location", "description": "$description", "startDate": "$startDate", "endDate": "$endDate, "attendance": ["$attendance1","$attendance2"], "maybeAttendance": ["""user": $user, "maxNumber": $maxNumber}
+    RequestBody:        {"id": $id","title": "title", "location": "location", "description": "$description", "startDate": "$startDate", "endDate": "$endDate, "attendance": ["$attendance1","$attendance2"], "maybeAttendance": ["$maybeAttendance1","$maybeAttendance2"],"user": $user, "maxNumber": $maxNumber}
     Implemented:        party, see AppointmentsRessource -> create()
+    Caution:            ID is the key, which consists of titledate, e.g. "id":"title2012-03-21-16.20.00". Date: YYYY-MM-DD-HH-MinutesM-SecondsS
     Details:            maxNumber: How many people are allowed to add this appointment?
                         user: E-Mail Adress of the user, who created this appointment
                         attendance: E-Mail Adresses of users, who wants to use this appointment
+                        maybeAttendance: if maxNumber > size of attendance : the user will fill in maybeAttendance
 
-Details: Appointment.java needs description, startDate (old start), endDate, attendance
+Details: Appointment.java needs description, startDate (old start), endDate, attendance, maybeAttendance, user, maxNumber 
 
     
-Show all appointments to the group I belong to
+Show all appointments
 -----------
 
 
-    Path:               /members/$email/appointments
+    Path:               /appointments
     Method:             GET
     RequestHeader:      -
     RequestBody:        -
-    Implemented:        partly, see MemberResourceRESTService -> lookupAppointmentsForMemberEMail
+    Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
     
 Show a specific appointment
 -----------
 
-    Path:               /members
-    Method:             POST
-    RequestHeader:      content-type:application/json
-    RequestBody:
+    Path:               /appointments/$id
+    Method:             GET
+    RequestHeader:      -
+    RequestBody:        -
     Implemented:        NO
 
 Show all appointments, which I have created
 -----------
 
-    Path:               /members
-    Method:             POST
-    RequestHeader:      content-type:application/json
-    RequestBody:
-    Implemented:        NO
+    see Show all appointments (Android Client will filter the results; nothing to do!)
  
 Show a specific appointment, which I have created
 -----------
 
-    Path:               /members
-    Method:             POST
-    RequestHeader:      content-type:application/json
-    RequestBody:
-    Implemented:        NO 
+     see Show a specific appointment (Android Client will filter the results; nothing to do!)
 
 Add me to an appointment (attendance)
 -----------
 
-    Path:               /members
+    Path:               /appointments/$id
     Method:             POST
     RequestHeader:      content-type:application/json
-    RequestBody:
+    RequestBody:        {"id": $id","title": "title", "location": "location", "description": "$description", "startDate": "$startDate", "endDate": "$endDate, "attendance": ["$attendance1","$attendance2"], "maybeAttendance": ["$maybeAttendance1","$maybeAttendance2"],"user": $user, "maxNumber": $maxNumber}
     Implemented:        NO
+    Details:            see Create a new appointment
     
 Delete me from an appointment, where I belong to
 -----------
 
+    see Add me to an appointment (Android Client will filter the results; nothing to do!)
 
-    Path:               /members
-    Method:             POST
-    RequestHeader:      content-type:application/json
-    RequestBody:
-    Implemented:        NO
 
 Delete an appointment
 -----------
 
-
-    Path:               /members
-    Method:             POST
-    RequestHeader:      content-type:application/json
-    RequestBody:
+    Path:               /appointment/$id
+    Method:             DELETE
+    RequestHeader:      -
+    RequestBody:        -
     Implemented:        NO
     
 Not necassary
