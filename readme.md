@@ -1,6 +1,137 @@
 woodle.backend
 ========================
 
+
+REST URLs (/rest)
+-----------
+
+Create a new member (Registration)
+-----------
+
+
+    Path:               /members
+    Method:             PUT (old POST)
+    RequestHeader:      content-type:application/json
+    RequestBody:        {"username": "$username", "password": "$password", "email": "$email", "phonenumber": "$phonenumber"}
+    Response:           Status 200, if User is created
+    Implemented:        partly, see MemberResourceRESTService -> addMember()
+    Details:            Needs to be a PUT, because it creates a new ressource
+
+Details: Member.java must contain: ID (not required), E-Mail (ok), Name (actually not required), Password (missing), PhoneNumber (ok).
+Caution E-Mail is the key!
+
+Login as a member (Authorisation)
+-----------
+
+    Path:               /members/authorisation
+    Method:             POST
+    RequestHeader:      content-type:application/json
+    RequestBody:        {"email": "$email", "password": "$password"};
+    Response:           Status 200, if E-Mail and Password are correct; else Status 404?
+    Implemented:        NO
+    Details:            Login with E-Mail and Password.
+    
+Modify a member (myself)
+-----------
+
+
+    Path:               /members/$email
+    Method:             POST, (old PUT)
+    RequestHeader:      content-type:application/json
+    RequestBody:        {"username": "$username", "password": "$password", "email": "$email", "phonenumber": "$phonenumber"}
+    Response:           Status 200: OK
+    Implemented:        partly, see MemberResourceRESTService -> modifyMember()
+    Details:            Login with E-Mail and Password
+   
+
+Create a new appointment (invite someone to an appointment)
+-----------
+
+
+    Path:               /appointments
+    Method:             PUT
+    RequestHeader:      content-type:application/json
+    RequestBody:        {"title": "title", "location": "location", "description": "$description", "startDate": "$startDate", "endDate": "$endDate, "attendance": ["$attendance1","$attendance2"], "maybeAttendance": ["""user": $user, "maxNumber": $maxNumber}
+    Implemented:        party, see AppointmentsRessource -> create()
+    Details:            maxNumber: How many people are allowed to add this appointment?
+                        user: E-Mail Adress of the user, who created this appointment
+                        attendance: E-Mail Adresses of users, who wants to use this appointment
+
+Details: Appointment.java needs description, startDate (old start), endDate, attendance
+
+    
+Show all appointments to the group I belong to
+-----------
+
+
+    Path:               /members/$email/appointments
+    Method:             GET
+    RequestHeader:      -
+    RequestBody:        -
+    Implemented:        partly, see MemberResourceRESTService -> lookupAppointmentsForMemberEMail
+    
+Show a specific appointment
+-----------
+
+    Path:               /members
+    Method:             POST
+    RequestHeader:      content-type:application/json
+    RequestBody:
+    Implemented:        NO
+
+Show all appointments, which I have created
+-----------
+
+    Path:               /members
+    Method:             POST
+    RequestHeader:      content-type:application/json
+    RequestBody:
+    Implemented:        NO
+ 
+Show a specific appointment, which I have created
+-----------
+
+    Path:               /members
+    Method:             POST
+    RequestHeader:      content-type:application/json
+    RequestBody:
+    Implemented:        NO 
+
+Add me to an appointment (attendance)
+-----------
+
+    Path:               /members
+    Method:             POST
+    RequestHeader:      content-type:application/json
+    RequestBody:
+    Implemented:        NO
+    
+Delete me from an appointment, where I belong to
+-----------
+
+
+    Path:               /members
+    Method:             POST
+    RequestHeader:      content-type:application/json
+    RequestBody:
+    Implemented:        NO
+
+Delete an appointment
+-----------
+
+
+    Path:               /members
+    Method:             POST
+    RequestHeader:      content-type:application/json
+    RequestBody:
+    Implemented:        NO
+    
+Not necassary
+-----------
+Delete my user profile. 
+Edit an appointment. Groups.
+
+
 What is it?
 -----------
 
