@@ -98,6 +98,16 @@ Show all appointments, which I have created
     Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
     Details:            $email is the E-Mail Adress of $user in all appointments
  
+Show all appointments, which I belong to (user is in attendance OR maybeAttendance with $user-eventId)
+-----------
+
+    Path:               /appointments/myappointments/$email
+    Method:             GET
+    RequestHeader:      -
+    RequestBody:        -
+    Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
+    Details:            $email is the E-Mail Adress of $user in all appointments
+    
 Show a specific appointment, which I have created
 -----------
 
@@ -122,7 +132,7 @@ Delete me from an appointment, where I belong to
 Delete an appointment
 -----------
 
-    Path:               /appointment/$id
+    Path:               /appointments/$id
     Method:             DELETE
     RequestHeader:      -
     RequestBody:        -
