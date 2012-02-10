@@ -54,7 +54,7 @@ Create a new appointment (invite someone to an appointment)
     RequestHeader:      content-type:application/json
     RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$useremail-eventId","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber}
     Implemented:        partly, see AppointmentsRessource -> create()
-    Caution:            ID is the key, which consists of title-startDate, e.g. "id":"title-2012-21-03-16.20.00". Date: YYYY-DD-MM-HH-MinutesM-SecondsS
+    Caution:            ID is the key, which consists of title-startDate, e.g. "id":"title-2012-21-03-16.20.00". Date: YYYY-MM-DD-HH-MinutesM-SecondsS
     Caution2:           for "attendance":["$useremail-eventId","$attendance2"]: useremail-eventId can be "info@info.com-343a4h4". Need E-Mail and EventID together, so that the Client knows in which calender delete which event
     Caution3:           for maybeAttendance: consists of useremail.eventId (same as attendance), e.g. "info@info.com-343a4h4"
     Details:            maxNumber: How many people are allowed to add this appointment?
