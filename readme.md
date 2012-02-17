@@ -50,6 +50,7 @@ Create a new appointment (invite someone to an appointment)
                         user: E-Mail Adress of the user, who created this appointment
                         attendance: E-Mail Adresses of users, who wants to use this appointment
                         maybeAttendance: if maxNumber > size of attendance : the user will fill in maybeAttendance
+    Response:           201: appointment is created; 400: appointment NOT created
 
 Details: Appointment.java needs description (String), startDate (old start) (String), endDate (String), attendance (ArrayList<String>), maybeAttendance (ArrayList<String>), user (String), maxNumber (int)
 
