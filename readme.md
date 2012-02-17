@@ -9,12 +9,13 @@ Create a new member (Registration)
 -----------
 
 
-    Path:               /members
+    Path:               /register
     Method:             POST
     RequestHeader:      content-type:application/json
     RequestBody:        {"email":"$email","password":"$password","phoneNumber":"$phoneNumber"}
     Response:           Status 200, if User is created
     Implemented:        partly, see MemberResourceRESTService -> addMember()
+    Details:            No basic authentification
 
 Details: Member.java must contain: E-Mail (ok), Password (missing), PhoneNumber (ok). Delete ID and Username.
 
