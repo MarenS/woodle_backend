@@ -12,10 +12,9 @@ Create a new member (Registration)
     Path:               /members
     Method:             POST
     RequestHeader:      content-type:application/json
-    RequestBody:        {"email":"$email","password":"$password","phonenumber":"$phonenumber"}
+    RequestBody:        {"email":"$email","password":"$password","phoneNumber":"$phoneNumber"}
     Response:           Status 200, if User is created
     Implemented:        partly, see MemberResourceRESTService -> addMember()
-    Details:            Needs to be a PUT, because it creates a new resource
 
 Details: Member.java must contain: E-Mail (ok), Password (missing), PhoneNumber (ok). Delete ID and Username.
 
@@ -64,7 +63,7 @@ Show all appointments
     RequestBody:        -
     Response:           {"appointments":[{appointment1},{appointment2}]}
     Response Status:    200: OK
-    Example Response:   {\"appointments\":[{\"id\":\"$id\",\"title\":\"Joggen am Mittag\",\"location\":\"location\",\"description\":\"$description\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate\",\"attendance\":\"$useremail-eventId"\",\"maybeAttendance\":\"$maybeAttendance1\",\"user\":\"$user\",\"maxNumber\":\"$maxNumber\"},{\"id\":\"$id2\",\"title\":\"Jobbörse\",\"location2\":\"location\",\"description\":\"$description2\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate2\",\"attendance\":\""$useremail-eventId"\",\"maybeAttendance\":\"$maybeAttendance3\",\"user\":\"$user1\",\"maxNumber\":\"$maxNumber1\"}]}
+    Example Response:   {\"appointments\":[{\"id\":\"$id\",\"title\":\"Joggen am Mittag\",\"location\":\"location\",\"description\":\"$description\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate\",\"attendance\":\"$useremail-eventId"\",\"maybeAttendance\":\"$maybeAttendance1\",\"user\":\"$user\",\"maxNumber\":\"$maxNumber\"},{\"id\":\"$id2\",\"title\":\"Jobbörse\",\"location\":\"location2\",\"description\":\"$description2\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate2\",\"attendance\":\""$useremail-eventId"\",\"maybeAttendance\":\"$maybeAttendance3\",\"user\":\"$user1\",\"maxNumber\":\"$maxNumber1\"}]}
     Caution:            for info with attendance and maybeAttendance, see Create a new appointment! (Caution2&3)
     Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
     
