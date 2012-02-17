@@ -28,7 +28,7 @@ Modify a member (myself)
     Path:               /members/$email
     Method:             PUT
     RequestHeader:      content-type:application/json
-    RequestBody:        {"username":"$username","password":"$password","email":"$email","phonenumber":"$phonenumber"}
+    RequestBody:        {"username":"$username","password":"$password","email":"$email","phoneNumber":"$phoneNumber"}
     Response:           Status 200: OK
     Implemented:        partly, see MemberResourceRESTService -> modifyMember()
     Details:            Login with E-Mail and Password
