@@ -13,7 +13,7 @@ Create a new member (Registration)
     Method:             POST
     RequestHeader:      content-type:application/json
     RequestBody:        {"email":"$email","password":"$password","phoneNumber":"$phoneNumber"}
-    Response:           Status 200, if User is created
+    Response:           Status 200: User is created; Status 400: E-Mail is null; Status 409: E-Mail already registered
     Implemented:        partly, see MemberResourceRESTService -> addMember()
     Details:            No basic authentification
 
