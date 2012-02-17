@@ -10,7 +10,7 @@ Create a new member (Registration)
 
 
     Path:               /members
-    Method:             PUT (old POST)
+    Method:             POST
     RequestHeader:      content-type:application/json
     RequestBody:        {"email":"$email","password":"$password","phonenumber":"$phonenumber"}
     Response:           Status 200, if User is created
@@ -20,24 +20,13 @@ Create a new member (Registration)
 Details: Member.java must contain: E-Mail (ok), Password (missing), PhoneNumber (ok). Delete ID and Username.
 
 Caution E-Mail is the key!
-
-Login as a member (Authorisation)
------------
-
-    Path:               /members/authorisation
-    Method:             POST
-    RequestHeader:      content-type:application/json
-    RequestBody:        {"email":"$email","password":"$password"}
-    Response:           Status 200, if E-Mail and Password are correct
-    Implemented:        NO
-    Details:            Login with E-Mail and Password.
     
 Modify a member (myself)
 -----------
 
 
     Path:               /members/$email
-    Method:             POST, (old PUT)
+    Method:             PUT
     RequestHeader:      content-type:application/json
     RequestBody:        {"username":"$username","password":"$password","email":"$email","phonenumber":"$phonenumber"}
     Response:           Status 200: OK
