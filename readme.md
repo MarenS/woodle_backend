@@ -14,12 +14,8 @@ Create a new member (Registration)
     RequestHeader:      content-type:application/json
     RequestBody:        {"email":"$email","password":"$password","phoneNumber":"$phoneNumber"}
     Response:           Status 200: User is created; Status 400: E-Mail is null; Status 409: E-Mail already registered
-    Implemented:        partly, see MemberResourceRESTService -> addMember()
-    Details:            No basic authentification
+    Details:            No basic authentification; E-Mail is the key.
 
-Details: Member.java must contain: E-Mail (ok), Password (missing), PhoneNumber (ok). Delete ID and Username.
-
-Caution E-Mail is the key!
     
 Modify a member (myself)
 -----------
@@ -30,7 +26,6 @@ Modify a member (myself)
     RequestHeader:      content-type:application/json
     RequestBody:        {"username":"$username","password":"$password","email":"$email","phoneNumber":"$phoneNumber"}
     Response:           Status 200: OK
-    Implemented:        partly, see MemberResourceRESTService -> modifyMember()
     Details:            Login with E-Mail and Password
    
 
@@ -41,18 +36,13 @@ Create a new appointment (invite someone to an appointment)
     Path:               /appointments
     Method:             PUT
     RequestHeader:      content-type:application/json
-    RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$useremail-eventId","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber}
-    Implemented:        partly, see AppointmentsRessource -> create()
-    Caution:            ID is the key, which consists of title-startDate, e.g. "id":"title-2012-03-21T16.20.00.000+01:00". Date: YYYY-MM-DD-HH-MinutesM-SecondsS
-    Caution2:           for "attendance":["$useremail-eventId","$attendance2"]: useremail-eventId can be "info@info.com-343a4h4". Need E-Mail and EventID together, so that the Client knows in which calender delete which event
-    Caution3:           for maybeAttendance: consists of useremail.eventId (same as attendance), e.g. "info@info.com-343a4h4"
+    RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendances":[{"user": $user,"email":$email,"eventId":"$eventId"},{"user": $user,"email":$email2,"eventId":"$eventId2"}],"maybeAttendances":[{"user": $user,"email":$email,"eventId":"$eventId"},{"user": $user,"email":$email,"eventId":"$eventId"}],"user":$user,"maxNumber":$maxNumber}
+    Caution:            ID is the key, which consists of title-startDate, e.g. "id":"title-2012-03-21T16.20.00.000+01:00". Date: YYYY-MM-DDTimeHH.MinutesM.SecondsS+LocalTime
     Details:            maxNumber: How many people are allowed to add this appointment?
                         user: E-Mail Adress of the user, who created this appointment
                         attendance: E-Mail Adresses of users, who wants to use this appointment
                         maybeAttendance: if maxNumber > size of attendance : the user will fill in maybeAttendance
     Response:           201: appointment is created; 400: appointment NOT created
-
-Details: Appointment.java needs description (String), startDate (old start) (String), endDate (String), attendance (ArrayList<String>), maybeAttendance (ArrayList<String>), user (String), maxNumber (int)
 
     
 Show all appointments
@@ -63,11 +53,11 @@ Show all appointments
     Method:             GET
     RequestHeader:      -
     RequestBody:        -
-    Response:           {"appointments":[{appointment1},{appointment2}]}
+    Response:           [{appointment1},{appointment2}]
     Response Status:    200: OK
-    Example Response:   {\"appointments\":[{\"id\":\"$id\",\"title\":\"Joggen am Mittag\",\"location\":\"location\",\"description\":\"$description\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate\",\"attendance\":\"$useremail-eventId"\",\"maybeAttendance\":\"$maybeAttendance1\",\"user\":\"$user\",\"maxNumber\":\"$maxNumber\"},{\"id\":\"$id2\",\"title\":\"Jobbörse\",\"location\":\"location2\",\"description\":\"$description2\",\"startDate\":\"2012-05-21-16.20.00\",\"endDate\":\"$endDate2\",\"attendance\":\""$useremail-eventId"\",\"maybeAttendance\":\"$maybeAttendance3\",\"user\":\"$user1\",\"maxNumber\":\"$maxNumber1\"}]}
-    Caution:            for info with attendance and maybeAttendance, see Create a new appointment! (Caution2&3)
-    Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
+    Example Response:   [{"id":"$id","title":"Joggen am Mittag","location":"location","description":"$description","startDate":"2012-05-21T16.20.00.000+01:00","endDate":"2012-05-21T18.20.00.000+01:00","attendances":[{"user": $user,"email":$email,"eventId":"$eventId"},"maybeAttendances":[{"user": $user,"email":$email,"eventId":"$eventId"},"user":"$user","maxNumber":$maxNumber},{"id":"$id2","title":"Jobbörse","location":"location2","description":"$description2","startDate":"2012-05-21T16.20.00.000+01:00","endDate":"2012-05-21T18.30.00.000+01:00","attendances":[{"user": $user,"email":$email,"eventId":"$eventId"},"maybeAttendances":[{"user": $user,"email":$email,"eventId":"$eventId"},"user":"$user1","maxNumber":$maxNumber1}]
+    Caution:            for info with attendance and maybeAttendance, see "Create a new appointment".
+    
     
 Show a specific appointment
 -----------
@@ -76,28 +66,29 @@ Show a specific appointment
     Method:             GET
     RequestHeader:      -
     RequestBody:        -
-    Implemented:        NO
+
 
 Show all appointments, which I have created
 -----------
 
-    Path:               /appointments/$email
+    Path:               /members/$email/appointments
     Method:             GET
     RequestHeader:      -
     RequestBody:        -
-    Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
     Details:            $email is the E-Mail Adress of $user in all appointments
+ 
  
 Show all appointments, which I belong to (user is in attendance OR maybeAttendance with $user-eventId)
 -----------
 
-    Path:               /appointments/myappointments/$email
+    Path:               /members/$email/appointments/attendance
     Method:             GET
     RequestHeader:      -
     RequestBody:        -
-    Implemented:        partly, see AppointmentsRessource -> serviceGetAppointments()
     Details:            $email is the E-Mail Adress of $user in all appointments
+    Info:               also /waiting (maybeAttendances) and /confirmed (attendances) implemented
     
+
 Show a specific appointment, which I have created
 -----------
 
@@ -106,17 +97,22 @@ Show a specific appointment, which I have created
 Add me to an appointment (attendance)
 -----------
 
-    Path:               /appointments/$id
-    Method:             POST
+    Path:               /appointments/$appointmentsId/attendance
+    Method:             PUT
     RequestHeader:      content-type:application/json
     RequestBody:        {"id":$id","title":"title","location":"location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendance":["$attendance1","$attendance2"],"maybeAttendance":["$maybeAttendance1","$maybeAttendance2"],"user":$user,"maxNumber":$maxNumber}
-    Implemented:        NO
+    Response:           "confirmed" or "waiting"
     Details:            see Create a new appointment
+    
     
 Delete me from an appointment, where I belong to
 -----------
 
-    see Add me to an appointment (Android Client will filter the results; nothing to do!)
+    Path:               /appointments/$appointmentsId/attendance
+    Method:             DELETE
+    RequestHeader:      content-type:application/json
+    Response:           E-Mail from maybeAttendances or null
+    Details:            see Create a new appointment
 
 
 Delete an appointment
@@ -126,6 +122,7 @@ Delete an appointment
     Method:             DELETE
     RequestHeader:      -
     RequestBody:        -
+    Response:           204 if deleted
     Implemented:        NO
     
 Not necassary
