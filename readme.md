@@ -36,7 +36,7 @@ Create a new appointment (invite someone to an appointment)
     Path:               /appointments
     Method:             PUT
     RequestHeader:      content-type:application/json
-    RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendances":[{"attendantEmail":$attendantEmail,"calendarEventId":"$calendarEventId"},{"attendantEmail":$attendantEmail2,"calendarEventId":"$calendarEventId2"}],"maybeAttendances":[{"user": $user,"email":$email,"eventId":"$eventId"},{"user": $user,"email":$email,"eventId":"$eventId"}],"user":$user,"maxNumber":$maxNumber}
+    RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendances":[{"attendantEmail":$attendantEmail,"calendarEventId":"$calendarEventId"},{"attendantEmail":$attendantEmail2,"calendarEventId":"$calendarEventId2"}],"maybeAttendances":[{"attendantEmail":$attendantEmail,"calendarEventId":"$calendarEventId"},{"attendantEmail":$attendantEmail2,"calendarEventId":"$calendarEventId2"}],"user":$user,"maxNumber":$maxNumber}
     Caution:            ID is the key, which consists of title-startDate, e.g. "id":"title-2012-03-21T16.20.00.000+01:00". Date: YYYY-MM-DDTimeHH.MinutesM.SecondsS+LocalTime
     Details:            maxNumber: How many people are allowed to add this appointment?
                         user: E-Mail Adress of the user, who created this appointment
