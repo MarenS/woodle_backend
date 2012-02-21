@@ -37,12 +37,13 @@ Create a new appointment (invite someone to an appointment)
     Method:             PUT
     RequestHeader:      content-type:application/json
     RequestBody:        {"id":$id","title":"$title","location":"$location","description":"$description","startDate":"$startDate","endDate":"$endDate,"attendances":[{"attendantEmail":$attendantEmail,"calendarEventId":"$calendarEventId"},{"attendantEmail":$attendantEmail2,"calendarEventId":"$calendarEventId2"}],"maybeAttendances":[{"attendantEmail":$attendantEmail,"calendarEventId":"$calendarEventId"},{"attendantEmail":$attendantEmail2,"calendarEventId":"$calendarEventId2"}],"user":$user,"maxNumber":$maxNumber}
+    Example Req.Body:   {"id":"Joggen am Mittag-2012-04-21T12:50:00.000+01:00","title":"Joggen am Mittag","location":"Butendeichsweg 2, Hamburg","description":"Sport am Arbeitsplatz","startDate":"2012-04-21T12:50:00.000+01:00","endDate":"2012-04-21T13:50:00.000+01:00","attendances":[{"attendantEmail":"maren.soetebier@googlemail.com","calendarEventId":"content://com.android.calendar/events/135"}],"maybeAttendances":[],"user":"maren.soetebier@googlemail.com","maxNumber":10}
+    Response:           Created: appointment is created
     Caution:            ID is the key, which consists of title-startDate, e.g. "id":"title-2012-03-21T16.20.00.000+01:00". Date: YYYY-MM-DDTimeHH.MinutesM.SecondsS+LocalTime
     Details:            maxNumber: How many people are allowed to add this appointment?
                         user: E-Mail Adress of the user, who created this appointment
                         attendance: E-Mail Adresses of users, who wants to use this appointment
                         maybeAttendance: if maxNumber > size of attendance : the user will fill in maybeAttendance
-    Response:           Created: appointment is created
 
     
 Show all appointments
